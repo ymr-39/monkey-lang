@@ -17,6 +17,12 @@ func TestNextToken(t *testing.T) {
 	let result = add(five, ten);
 	!-/*5;
 	5 < 10 > 5;
+
+	if (5 < 10) {
+		return true;
+	} else {
+		return false;
+	}
 	`
 
 	expectedTokens := []token.Token{
@@ -67,7 +73,6 @@ func TestNextToken(t *testing.T) {
 		{Type: token.INT, Literal: "5"},
 		{Type: token.SEMICOLON, Literal: ";"},
 
-		// 5 < 10 > 5;
 		{Type: token.INT, Literal: "5"},
 		{Type: token.LT, Literal: "<"},
 		{Type: token.INT, Literal: "10"},
@@ -75,6 +80,11 @@ func TestNextToken(t *testing.T) {
 		{Type: token.INT, Literal: "5"},
 		{Type: token.SEMICOLON, Literal: ";"},
 
+		// if (5 < 10) {
+		// 	return true;
+		// } else {
+		// 	return false;
+		// }
 		{Type: token.EOF, Literal: ""},
 	}
 
