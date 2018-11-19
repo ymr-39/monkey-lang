@@ -23,6 +23,9 @@ func TestNextToken(t *testing.T) {
 	} else {
 		return false;
 	}
+
+	10 == 10;
+	10 != 9;
 	`
 
 	expectedTokens := []token.Token{
@@ -97,6 +100,16 @@ func TestNextToken(t *testing.T) {
 		{Type: token.FALSE, Literal: "false"},
 		{Type: token.SEMICOLON, Literal: ";"},
 		{Type: token.RBRACE, Literal: "}"},
+
+		{Type: token.INT, Literal: "10"},
+		{Type: token.EQ, Literal: "=="},
+		{Type: token.INT, Literal: "10"},
+		{Type: token.SEMICOLON, Literal: ";"},
+
+		{Type: token.INT, Literal: "10"},
+		{Type: token.NOT_EQ, Literal: "!="},
+		{Type: token.INT, Literal: "9"},
+		{Type: token.SEMICOLON, Literal: ";"},
 
 		{Type: token.EOF, Literal: ""},
 	}
